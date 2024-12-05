@@ -9,9 +9,9 @@ fn main() {
 fn sum_multiplications(input: &str) -> i32 {
     let mut result: i32 = 0;
 
-    let regex_splitted: Vec<&str> = input.split("mul(").collect();
-    for i in 0..regex_splitted.len() {
-        let sub = regex_splitted[i];
+    let splitted: Vec<&str> = input.split("mul(").collect();
+    for i in 0..splitted.len() {
+        let sub = splitted[i];
         let sub: Vec<&str> = sub
             .split_terminator(')')
             .filter(|x| x.contains(','))
