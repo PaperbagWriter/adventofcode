@@ -14,9 +14,9 @@ fn main() {
     let west = (0, -1);
     let directions = [north, east, south, west];
     let part1_solution = part1(&matrix, &mut hash, directions, guard_inital_position);
-    println!("{}", part1_solution);
+    println!("Part 1: {}", part1_solution);
     let part2_solution = part2(&matrix, directions, guard_inital_position);
-    println!("{}", part2_solution);
+    println!("Part 2: {}", part2_solution);
 }
 
 fn part2(
@@ -26,15 +26,17 @@ fn part2(
 ) -> i32 {
     let matrices = create_different_matrices(matrix);
     let mut count = 0;
-    for e in matrices {
+    for i in 0..matrices.len() {
+        print!("\rProcessing {}/{}", i, matrices.len() - 1);
         let mut hash: HashSet<(isize, isize)> = HashSet::new();
         let mut edges: HashSet<((isize, isize), (isize, isize))> = HashSet::new();
         hash.insert(init_pos);
-        let res = find_edges(&e, &mut hash, &mut edges, directions, init_pos);
+        let res = find_edges(&matrices[i], &mut hash, &mut edges, directions, init_pos);
         if res {
             count += 1;
         }
     }
+    println!("{}", "");
     return count;
 }
 
